@@ -25,6 +25,9 @@
     firewall = {
       enable = true;
       trustedInterfaces = [ "pterodactyl0" ];
+
+      logRefusedConnections = false;
+
       allowedTCPPorts = [ 80 443 2022 ];
       allowedTCPPortRanges = [ { from = 25000; to = 26000; } ];
       allowedUDPPortRanges = [ { from = 25000; to = 26000; } ];
@@ -38,6 +41,12 @@
     settings.PermitRootLogin = "no"; # for root
     settings.PasswordAuthentication = false; # for other users
     openFirewall = true;
+  };
+
+  services.fail2ban = {
+    enable = true;
+    bantime = "12h";
+    maxretry = 2;
   };
 
   security.sudo.wheelNeedsPassword = false;
