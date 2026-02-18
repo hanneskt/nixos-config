@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -12,19 +10,23 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.forceInstall = true;
 
-  networking.hostName = "frost";
-
   networking = {
+    hostName = "frost";
     networkmanager.enable = false;
     useDHCP = false;
 
     defaultGateway = "109.71.252.1";
-    interfaces.ens18.ipv4.addresses = [{
-      address = "109.71.252.201";
-      prefixLength = 24;
-    }];
+    interfaces.ens18.ipv4.addresses = [
+      {
+        address = "109.71.252.201";
+        prefixLength = 24;
+      }
+    ];
 
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
   };
 
   myServices.pyropanel = {

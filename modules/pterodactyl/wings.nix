@@ -1,9 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 with lib;
 let
   cfg = config.myServices.wings;
-in {
+in
+{
   options.myServices.wings = {
     enable = mkEnableOption "Pterodactyl Wings Node";
     fqdn = mkOption {
@@ -16,9 +21,22 @@ in {
     networking.firewall = {
       trustedInterfaces = [ "pterodactyl0" ];
 
-      allowedTCPPorts = [ 80 443 ];
-      allowedTCPPortRanges = [ { from = 25000; to = 26000; } ];
-      allowedUDPPortRanges = [ { from = 25000; to = 26000; } ];
+      allowedTCPPorts = [
+        80
+        443
+      ];
+      allowedTCPPortRanges = [
+        {
+          from = 25000;
+          to = 26000;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 25000;
+          to = 26000;
+        }
+      ];
     };
 
     services.caddy = {
@@ -37,7 +55,7 @@ in {
       image = "ghcr.io/pterodactyl/wings:v1.12.1";
       ports = [
         "127.0.0.1:9000:443" # API proxied by Caddy
-        "0.0.0.0:2022:2022"  # SFTP exposed directly
+        "0.0.0.0:2022:2022" # SFTP exposed directly
       ];
       volumes = [
         "/var/run/docker.sock:/var/run/docker.sock"
