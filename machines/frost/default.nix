@@ -11,7 +11,6 @@
   boot.loader.grub.forceInstall = true;
 
   networking = {
-    hostName = "frost";
     networkmanager.enable = false;
     useDHCP = false;
 

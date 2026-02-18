@@ -12,7 +12,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking = {
-    hostName = "tatsu";
     networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
