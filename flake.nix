@@ -15,6 +15,14 @@
           ];
         };
 
+        tatsu = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./modules/common.nix
+            ./machines/tatsu/default.nix
+          ];
+        };
+
         minimal-installer = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
