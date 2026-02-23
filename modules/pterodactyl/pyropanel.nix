@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
   cfg = config.myServices.pyropanel;
-in {
+in
+{
   options.myServices.pyropanel = {
     enable = mkEnableOption "Pyrodactyl Panel Stack";
     fqdn = mkOption {
@@ -13,7 +19,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     services.caddy = {
       enable = true;
@@ -29,7 +38,10 @@ in {
 
     systemd.services.init-pterodactyl-network = {
       description = "Create Docker network for Pterodactyl";
-      after = [ "network.target" "docker.service" ];
+      after = [
+        "network.target"
+        "docker.service"
+      ];
       requires = [ "docker.service" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig.Type = "oneshot";
@@ -88,7 +100,10 @@ in {
           "/var/lib/pterodactyl/certs/:/etc/letsencrypt/"
           "/var/lib/pterodactyl/logs/:/app/storage/logs"
         ];
-        dependsOn = [ "database" "cache" ];
+        dependsOn = [
+          "database"
+          "cache"
+        ];
       };
     };
   };

@@ -59,13 +59,16 @@
     pika-backup
 
     # dev
-    git # git
-    delta
-    # differ
+    git
+    delta # diffing tool
     jujutsu
     gcc
     gnumake
-    nil # nix language server
+
+    # nix language servers
+    nil
+    nixd
+
     rustup
     podman-compose
 
