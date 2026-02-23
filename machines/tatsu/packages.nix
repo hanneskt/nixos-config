@@ -51,6 +51,7 @@
     lazysql
     gdb
     htop
+    nh
 
     vscode.fhs
     zed-editor
