@@ -1,7 +1,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/server.nix
+    ./../../modules/server/ssh.nix
     ./../../modules/pterodactyl/pyropanel.nix
     ./../../modules/pterodactyl/wings.nix
     ./../../modules/server/wakapi.nix

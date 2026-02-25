@@ -35,12 +35,7 @@
   documentation.man.generateCaches = false;
 
   environment.systemPackages = with pkgs; [
-    git
-    vim
     helix
-    htop
-    curl
-    wget
   ];
 
   nix.settings.experimental-features = [

@@ -1,17 +1,22 @@
 {
-  description = "NixOS configurations for frost, tatsu, and custom ISO";
+  description = "NixOS configurations";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      ...
+    }@inputs:
     let
-      system = "x86_64-linux";
-
       mkMachine =
-        hostname:
+        {
+          hostname,
+          system ? "x86_64-linux",
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
@@ -34,11 +39,16 @@
     in
     {
       nixosConfigurations = {
-        frost = mkMachine "frost";
-        tatsu = mkMachine "tatsu";
+        frost = mkMachine { hostname = "frost"; };
+        tatsu = mkMachine { hostname = "tatsu"; };
+
+        kotpi = mkMachine {
+          hostname = "kotpi";
+          system = "aarch64-linux";
+        };
 
         minimal-installer = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
           modules = [
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             isoConfig
@@ -46,7 +56,7 @@
         };
       };
 
-      packages.${system} = {
+      packages."x86_64-linux" = {
         minimal-iso = self.nixosConfigurations.minimal-installer.config.system.build.isoImage;
       };
     };

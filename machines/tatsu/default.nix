@@ -5,11 +5,17 @@
     ./hardware-configuration.nix
     ./packages.nix
   ];
+  boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ]; # allow binary emulation for aarch64
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "bcachefs" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    supportedFilesystems = [ "bcachefs" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
 
   networking = {
     networkmanager.enable = true;
