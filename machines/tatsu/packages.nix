@@ -33,6 +33,7 @@
     wireshark
     nautilus
     libqalculate
+    loupe
 
     # cli
     yazi
