@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   documentation.dev.enable = true;
   users.users.hannes.packages = with pkgs; [
@@ -56,16 +56,17 @@
 
     vscode.fhs
     zed-editor
-    antigravity
+    pkgs-unstable.antigravity
     pika-backup
 
     # dev
     git
     delta # diffing tool
-    jujutsu
+    pkgs-unstable.jujutsu
     gcc
     gnumake
     wakatime-cli
+    github-desktop
 
     # nix language servers
     nil

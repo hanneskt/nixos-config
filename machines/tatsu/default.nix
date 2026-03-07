@@ -16,19 +16,20 @@
     supportedFilesystems = [ "bcachefs" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
-
   networking = {
+    firewall = {
+      enable = false;
+      checkReversePath = "loose";
+      allowedTCPPorts = [ 8000 ];
+      allowedUDPPorts = [ ];
+    };
+
     networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
       "8.8.8.8"
     ];
 
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 8000 ];
-      allowedUDPPorts = [ ];
-    };
   };
 
   hardware.bluetooth.enable = true;
