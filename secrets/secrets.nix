@@ -14,4 +14,8 @@ in
     hannes
     frost
   ];
+  "tududi.env.age".publicKeys = [
+    hannes
+    frost
+  ];
 }

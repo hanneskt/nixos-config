@@ -33,7 +33,7 @@ in
 
     virtualisation.docker = {
       enable = true;
-      autoPrune.enable = true;
+      autoPrune.enable = false;
     };
 
     systemd.services.init-pterodactyl-network = {

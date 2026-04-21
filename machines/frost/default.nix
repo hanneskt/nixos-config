@@ -7,6 +7,7 @@
     ./../../modules/server/kuma.nix
     ./../../modules/server/pocket-id.nix
     ./../../modules/server/ssh.nix
+    ./../../modules/server/tududi.nix
     ./../../modules/server/wakapi.nix
   ];
 
@@ -72,6 +73,15 @@
     enable = true;
     envFile = config.age.secrets."wakapi.env".path;
   };
+
+  age.secrets."tududi.env" = {
+    file = ../../secrets/tududi.env.age;
+  };
+  myServices.tududi = {
+    enable = true;
+    envFile = config.age.secrets."tududi.env".path;
+  };
+
   myServices.kuma.enable = true;
 
   system.stateVersion = "26.05";
