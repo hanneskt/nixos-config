@@ -84,5 +84,13 @@
 
   myServices.kuma.enable = true;
 
+  users.users.breakglass = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+
+  security.sudo.wheelNeedsPassword = false;
+  users.users.hannes.extraGroups = [ "docker" ];
+
   system.stateVersion = "26.05";
 }
